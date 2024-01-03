@@ -33,13 +33,14 @@ export const siteData = [
         currency: "INR",
       },
       inclusions: {
-        on_demand_videos: 2,
+        on_demand_videos: 5,
+        live_stream_sessions: 2,
         live_qa_sessions: true,
         whatsapp_community: true,
       },
       about: {
         html_content:
-          "<p>Lorem ipsum text about managing relationships, communication, time management, and forgiveness.</p>",
+          "Lorem ipsum text about managing relationships, communication, time management, and forgiveness. Lorem ipsum text about managing relationships, communication, time management, and forgiveness.",
       },
       what_to_expect: {
         html_content: [
@@ -89,13 +90,13 @@ export const siteData = [
         reviewer_designation: "Designation of the reviewer",
       },
       {
-        text: "Mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.",
+        text: "Mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system you a complete account of the system.",
         reviewer_pic: "/NITYANAND CHARAN DAS_profile_pic.jpg",
         reviewer_name: "Name of the reviewer",
         reviewer_designation: "Designation of the reviewer",
       },
       {
-        text: "Pleasure and praising pain was born and I will give you a complete account of the system.",
+        text: "Pleasure and praising pain was born and I will give you a complete account of the system you a complete account of the system.",
         reviewer_pic: "/NITYANAND CHARAN DAS_profile_pic.jpg",
         reviewer_name: "Name of the reviewer",
         reviewer_designation: "Designation of the reviewer",

@@ -3,13 +3,15 @@
 
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { MdOndemandVideo, MdOutlineWhatsapp } from "react-icons/md";
+import { BiChat } from "react-icons/bi";
 import { siteData } from "./data";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    console.log("next slide");
+    console.log(currentSlide);
 
     setCurrentSlide((prev) => (prev + 1) % 3);
   };
@@ -21,14 +23,17 @@ export default function Home() {
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
-    console.log("goto slide");
+    console.log("goto slide", index);
   };
 
   return (
     <main className="">
       {siteData.map((item, index) => (
         <div key={index}>
-          <section className="relative h-[90vh] flex items-end">
+          <section
+            className="relative h-[90vh] flex items-end"
+            id="heroSection"
+          >
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover z-0"
@@ -52,28 +57,61 @@ export default function Home() {
               </p>
             </div>
           </section>
-          <section className="lg:px-20 w-[60vw]">
-            <ul className="flex lg:gap-4 text-2xl">
-              <li className="border-b-4 p-4 border-purple-800">ABOUT</li>
-              <li className="p-4">INSTRUCTOR</li>
-              <li className="p-4">REVIEWS</li>
+          <section className="lg:px-20 flex relative" id="tabSection">
+            <ul className="flex lg:gap-4 text-2xl w-[60vw]">
+              <li className="border-b-4 p-4 border-purple-800 cursor-pointer">
+                ABOUT
+              </li>
+              <li className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer">
+                INSTRUCTOR
+              </li>
+              <li className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer">
+                REVIEWS
+              </li>
             </ul>
+            <div className="absolute flex flex-col gap-2  right-20 -top-10 bg-purple-200 rounded-md p-4">
+              <h1 className="font-semibold">Course fess</h1>
+              <h1 className="font-extrabold">₹{item.course.fee.amount}</h1>
+              <h2 className="font-bold">What's included:</h2>
+              <div className="flex items-center gap-2">
+                <MdOndemandVideo />
+                <h3>
+                  {item.course.inclusions.on_demand_videos} on-demand
+                  videos
+                </h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <MdOndemandVideo />
+                <h3>
+                  {item.course.inclusions.live_stream_sessions} live stream
+                  sessions
+                </h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <BiChat />
+                <h3>Live Q&A sessions with Nityanand Charan Das</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <MdOutlineWhatsapp />
+                <h3>An active whatsapp community</h3>
+              </div>
+              <button className="bg-purple-800 text-white font-semibold rounded-full text-center w-full p-2">
+                Register today
+              </button>
+            </div>
           </section>
-          <section className="lg:px-20 mt-10 w-[60vw]">
+          <section
+            className="lg:px-20 mt-10 w-[60vw]"
+            id="aboutCourseSection"
+          >
             <h1 className="text-4xl lg:text-5xl font-bold">
               About the course
             </h1>
             <p className="mt-10 text-2xl leading-normal ">
-              This course distills wisdom from the Bhagavad Gita into four
-              major themes. It covers mastering thoughts and emotions for
-              inner peace (Mind Control), setting realistic goals and
-              maintaining life balance (Managing Expectations), resolving
-              conflicts with empathy and ethical principles (Conflict
-              Resolution), and managing negative feelings while cultivating
-              positivity (Controlling Negative Emotions). The course
-              includes interactive sessions, reflective exercises, and
-              discussions, making the Gita's teachings applicable to
-              contemporary life.
+              {item.course.about.html_content}
+            </p>
+            <p className="mt-10 text-2xl leading-normal ">
+              {item.course.about.html_content}
             </p>
             <h1 className="text-4xl mt-10 lg:text-5xl font-bold">
               What to expect from the course
@@ -109,7 +147,10 @@ export default function Home() {
               </ul>
             </div>
           </section>
-          <section className="lg:px-20 mt-10 flex flex-col gap-10">
+          <section
+            className="lg:px-20 mt-10 flex flex-col gap-10"
+            id="aboutInstructor"
+          >
             <h1 className="text-4xl lg:text-5xl font-bold">
               About the Instructor
             </h1>
@@ -137,15 +178,18 @@ export default function Home() {
               ))}
             </div>
           </section>
-          <section className="relative mt-10 bg-slate-300 flex flex-col gap-8 p-10 items-center justify-center overflow-hidden">
+          <section
+            className="relative mt-10 bg-slate-300 flex flex-col gap-8 p-10 items-center justify-center overflow-hidden "
+            id="testimonial"
+          >
             {" "}
             {item.testimonial.map((item, index) => (
               <div
                 key={index}
-                className={`w-full transition-transform transform ${
+                className={`w-full transition-transform flex flex-col items-center gap-10 transform min-w-fit ${
                   index === currentSlide
-                    ? "translate-x-0"
-                    : "translate-x-full"
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-full opacity-0 -z-20 absolute "
                 }`}
               >
                 <div className="flex items-center justify-center px-48 text-center ">
@@ -178,7 +222,7 @@ export default function Home() {
             </div>
             <div className="absolute flex justify-between w-full px-20 z-20">
               <span
-                onClick={() => console.log("prev slide clicked")}
+                onClick={prevSlide}
                 className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-400 cursor-pointer"
               >
                 <IoIosArrowBack />
