@@ -1,7 +1,7 @@
 "use client";
 // import Image from "next/image";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOndemandVideo, MdOutlineWhatsapp } from "react-icons/md";
 import { BiChat } from "react-icons/bi";
@@ -9,6 +9,11 @@ import { siteData } from "./data";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleClick = (id) => {
+    let element = document.getElementById(id);
+    element.scrollIntoView({ behavior: "smooth" });
+  };
 
   const nextSlide = () => {
     console.log(currentSlide);
@@ -31,7 +36,7 @@ export default function Home() {
       {siteData.map((item, index) => (
         <div key={index}>
           <section
-            className="relative h-[90vh] flex items-end"
+            className="relative lg:h-[90vh] h-[35vh] flex items-end"
             id="heroSection"
           >
             {/* Background Image */}
@@ -48,31 +53,40 @@ export default function Home() {
             {/* <div className="absolute inset-0 bg-black opacity-50 z-10 "></div> */}
 
             {/* Content */}
-            <div className="container mx-auto z-20 text-left mb-8 px-20">
-              <h1 className="text-xl lg:text-3xl text-white mb-4">
+            <div className="container mx-auto z-20 text-left mb-8 lg:px-20 px-4">
+              <h1 className=" lg:text-3xl text-white mb-4">
                 {item.instructor.name}
               </h1>
-              <p className="text-4xl lg:text-6xl font-semibold text-white leading-tight w-[60vw]">
+              <p className="text-xl lg:text-6xl font-semibold text-white leading-tight lg:w-[60vw] w-[70vw]">
                 {item.course.title}
               </p>
             </div>
           </section>
-          <section className="lg:px-20 flex relative" id="tabSection">
-            <ul className="flex lg:gap-4 text-2xl w-[60vw]">
-              <li className="border-b-4 p-4 border-purple-800 cursor-pointer">
+          <section className="px-4 lg:px-20 flex relative" id="tabSection">
+            <ul className="flex lg:gap-4 lg:text-2xl lg:w-[60vw] w-full justify-between lg:justify-start">
+              <li
+                onClick={() => handleClick("aboutCourseSection")}
+                className="border-b-4 p-4 border-purple-800 cursor-pointer"
+              >
                 ABOUT
               </li>
-              <li className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer">
+              <li
+                onClick={() => handleClick("aboutInstructor")}
+                className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer"
+              >
                 INSTRUCTOR
               </li>
-              <li className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer">
+              <li
+                onClick={() => handleClick("testimonial")}
+                className="p-4 hover:border-purple-800 hover:border-b-4 cursor-pointer"
+              >
                 REVIEWS
               </li>
             </ul>
-            <div className="absolute flex flex-col gap-2  right-20 -top-10 bg-purple-200 rounded-md p-4">
-              <h1 className="font-semibold">Course fess</h1>
-              <h1 className="font-extrabold">₹{item.course.fee.amount}</h1>
-              <h2 className="font-bold">What's included:</h2>
+            <div className="hidden absolute lg:flex flex-col gap-2  right-20 -top-10 bg-purple-100 rounded-md p-6">
+              <h1 className="font-bold text-2xl">Course fees</h1>
+              <h1 className="font-extrabold text-5xl">₹5,000</h1>
+              <h2 className="font-semibold text-2xl">What's included:</h2>
               <div className="flex items-center gap-2">
                 <MdOndemandVideo />
                 <h3>
@@ -95,13 +109,17 @@ export default function Home() {
                 <MdOutlineWhatsapp />
                 <h3>An active whatsapp community</h3>
               </div>
-              <button className="bg-purple-800 text-white font-semibold rounded-full text-center w-full p-2">
+              <button className=" bg-purple-800 text-white font-semibold rounded-full text-center w-full p-2 mt-4">
                 Register today
               </button>
             </div>
+            {/* <button className="lg:hidden fixed flex justify-between bottom-0 left-0 bg-purple-800 text-white font-semibold rounded-full text-center w-full p-2 mt-4">
+              <span>Register today</span>
+              <span>₹5,000</span>
+            </button> */}
           </section>
           <section
-            className="lg:px-20 mt-10 w-[60vw]"
+            className="px-4 lg:px-20 mt-10 lg:w-[60vw]"
             id="aboutCourseSection"
           >
             <h1 className="text-4xl lg:text-5xl font-bold">
@@ -147,39 +165,70 @@ export default function Home() {
               </ul>
             </div>
           </section>
+          <div className="lg:hidden  flex flex-col gap-2 bg-purple-100 rounded-md p-6 m-4 mt-10">
+            <h1 className="font-bold text-2xl">Course fees</h1>
+            <h1 className="font-extrabold text-5xl">₹5,000</h1>
+            <h2 className="font-semibold text-2xl">What's included:</h2>
+            <div className="flex items-center gap-2 text-lg">
+              <MdOndemandVideo />
+              <h3>
+                {item.course.inclusions.on_demand_videos} on-demand videos
+              </h3>
+            </div>
+            <div className="flex items-center gap-2 text-lg">
+              <MdOndemandVideo />
+              <h3>
+                {item.course.inclusions.live_stream_sessions} live stream
+                sessions
+              </h3>
+            </div>
+            <div className="flex items-center gap-2 text-lg">
+              <BiChat />
+              <h3>Live Q&A sessions with Nityanand Charan Das</h3>
+            </div>
+            <div className="flex items-center gap-2 text-lg">
+              <MdOutlineWhatsapp />
+              <h3>An active whatsapp community</h3>
+            </div>
+            <button className=" bg-purple-800 text-white font-semibold rounded-full text-center text-xl w-full p-4 mt-4">
+              Register today
+            </button>
+          </div>
           <section
-            className="lg:px-20 mt-10 flex flex-col gap-10"
+            className="px-4 lg:px-20 mt-10 flex flex-col gap-10"
             id="aboutInstructor"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold">
+            <h1 className="text-4xl text-center lg:text-left lg:text-5xl font-bold">
               About the Instructor
             </h1>
-            <div className="lg:flex gap-4">
+            <div className="flex lg:flex-row flex-col items-center gap-4">
               <img
-                className="rounded-full h-60"
+                className="rounded-full lg:w-60 w-40"
                 src="/NITYANAND CHARAN DAS_profile_pic.jpg"
               />
               {item.about_instructor.html_content.map((item, index) => (
                 <div key={index}>
-                  <p className="text-2xl">{item}</p>
+                  <p className="text-2xl text-center lg:text-left">
+                    {item}
+                  </p>
                 </div>
               ))}
             </div>
-            <div className="flex justify-around">
+            <div className="flex lg:justify-around justify-between">
               {item.instructor.social_media.map((item, index) => (
                 <a
                   href={item.link}
                   key={index}
-                  className="flex gap-2 cursor-pointer"
+                  className="flex lg:flex-row flex-col items-center gap-2 cursor-pointer"
                 >
-                  <img src={item.icon} />
+                  <img className="h-[24px] w-[24px]" src={item.icon} />
                   <span>{item.name}</span>
                 </a>
               ))}
             </div>
           </section>
           <section
-            className="relative mt-10 bg-slate-300 flex flex-col gap-8 p-10 items-center justify-center overflow-hidden "
+            className="relative lg:h-[60vh] h-[50vh] mt-10 bg-slate-200 flex flex-col gap-8 p-10 items-center justify-center overflow-hidden "
             id="testimonial"
           >
             {" "}
@@ -192,8 +241,10 @@ export default function Home() {
                     : "translate-x-full opacity-0 -z-20 absolute "
                 }`}
               >
-                <div className="flex items-center justify-center px-48 text-center ">
-                  <p className="text-4xl font-bold">"{item.text}"</p>
+                <div className="flex items-center justify-center w-[70vw] text-center ">
+                  <p className="text-2xl lg:text-4xl font-bold">
+                    "{item.text}"
+                  </p>
                 </div>
                 <div className="flex gap-4 items-center">
                   <img
@@ -220,16 +271,16 @@ export default function Home() {
                 ></div>
               ))}
             </div>
-            <div className="absolute flex justify-between w-full px-20 z-20">
+            <div className="absolute flex justify-between w-full px-4 lg:px-20 z-20">
               <span
                 onClick={prevSlide}
-                className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-400 cursor-pointer"
+                className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-300 hover:bg-slate-400 cursor-pointer"
               >
                 <IoIosArrowBack />
               </span>
               <span
                 onClick={nextSlide}
-                className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-400 cursor-pointer"
+                className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-300 hover:bg-slate-400 cursor-pointer"
               >
                 <IoIosArrowForward />
               </span>
