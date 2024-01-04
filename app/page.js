@@ -1,6 +1,5 @@
 "use client";
 // import Image from "next/image";
-
 import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOndemandVideo, MdOutlineWhatsapp } from "react-icons/md";
@@ -54,12 +53,12 @@ export default function Home() {
 
             {/* Content */}
             <div className="container mx-auto z-20 text-left mb-8 lg:px-20 px-4">
-              <h1 className=" lg:text-3xl text-white mb-4">
+              <h2 className="lg:text-3xl text-white mb-4">
                 {item.instructor.name}
-              </h1>
-              <p className="text-xl lg:text-6xl font-semibold text-white leading-tight lg:w-[60vw] w-[70vw]">
+              </h2>
+              <h1 className="text-xl lg:text-6xl font-roboto-serif font-semibold tracking-wide text-white leading-tight lg:w-[60vw] w-[70vw]">
                 {item.course.title}
-              </p>
+              </h1>
             </div>
           </section>
           <section className="px-4 lg:px-20 flex relative" id="tabSection">
@@ -84,8 +83,10 @@ export default function Home() {
               </li>
             </ul>
             <div className="hidden absolute lg:flex flex-col gap-2  right-20 -top-10 bg-purple-100 rounded-md p-6">
-              <h1 className="font-bold text-2xl">Course fees</h1>
-              <h1 className="font-extrabold text-5xl">₹5,000</h1>
+              <h2 className="font-bold text-2xl">Course fees</h2>
+              <h1 className="font-extrabold font-roboto-serif text-5xl">
+                ₹5,000
+              </h1>
               <h2 className="font-semibold text-2xl">What's included:</h2>
               <div className="flex items-center gap-2">
                 <MdOndemandVideo />
@@ -122,7 +123,7 @@ export default function Home() {
             className="px-4 lg:px-20 mt-10 lg:w-[60vw]"
             id="aboutCourseSection"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold">
+            <h1 className="text-4xl font-roboto-serif lg:text-5xl font-bold">
               About the course
             </h1>
             <p className="mt-10 text-2xl leading-normal ">
@@ -131,7 +132,7 @@ export default function Home() {
             <p className="mt-10 text-2xl leading-normal ">
               {item.course.about.html_content}
             </p>
-            <h1 className="text-4xl mt-10 lg:text-5xl font-bold">
+            <h1 className="text-4xl font-roboto-serif mt-10 lg:text-5xl font-bold">
               What to expect from the course
             </h1>
             <ul className="mt-10 text-2xl leading-normal ml-10">
@@ -144,7 +145,7 @@ export default function Home() {
               )}
             </ul>
 
-            <h1 className="text-4xl mt-10 lg:text-5xl font-bold">
+            <h1 className="text-4xl font-roboto-serif mt-10 lg:text-5xl font-bold">
               Key topics covered
             </h1>
             <div className="mt-10 text-2xl leading-normal ">
@@ -166,8 +167,10 @@ export default function Home() {
             </div>
           </section>
           <div className="lg:hidden  flex flex-col gap-2 bg-purple-100 rounded-md p-6 m-4 mt-10">
-            <h1 className="font-bold text-2xl">Course fees</h1>
-            <h1 className="font-extrabold text-5xl">₹5,000</h1>
+            <h2 className="font-bold text-2xl">Course fees</h2>
+            <h1 className="font-extrabold font-roboto-serif text-5xl">
+              ₹5,000
+            </h1>
             <h2 className="font-semibold text-2xl">What's included:</h2>
             <div className="flex items-center gap-2 text-lg">
               <MdOndemandVideo />
@@ -198,7 +201,7 @@ export default function Home() {
             className="px-4 lg:px-20 mt-10 flex flex-col gap-10"
             id="aboutInstructor"
           >
-            <h1 className="text-4xl text-center lg:text-left lg:text-5xl font-bold">
+            <h1 className="text-4xl font-roboto-serif text-center lg:text-left lg:text-5xl font-bold">
               About the Instructor
             </h1>
             <div className="flex lg:flex-row flex-col items-center gap-4">
@@ -242,9 +245,9 @@ export default function Home() {
                 }`}
               >
                 <div className="flex items-center justify-center w-[70vw] text-center ">
-                  <p className="text-2xl lg:text-4xl font-bold">
+                  <h1 className="text-2xl font-roboto-serif lg:text-4xl font-bold">
                     "{item.text}"
-                  </p>
+                  </h1>
                 </div>
                 <div className="flex gap-4 items-center">
                   <img
